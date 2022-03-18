@@ -6,6 +6,8 @@ class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
   Profiles = mongoose.model('Profile', ProfileSchema, 'accounts');
+
+  Events = mongoose.model('Event',)
 }
 
 export const dbContext = new DbContext()
