@@ -2,8 +2,8 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 export const CommentsSchema = new Schema({
-  eventId: { type: Schema.Types.ObjectId, required: true },
-  creatorId: { type: Schema.Types.ObjectId, required: true },
+  eventId: { type: Schema.Types.ObjectId, required: true, ref: 'Event' },
+  creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
   body: { type: String, required: true, min: 5, max: 200 },
   isAttending: { type: Boolean, required: true, default: false }
 },
@@ -14,7 +14,7 @@ CommentsSchema.virtual('creator', {
   localField: 'creatorId',
   foreignField: '_id',
   justOne: true,
-  ref: 'Profile'
+  ref: 'Account'
 })
 
 CommentsSchema.virtual('event', {
