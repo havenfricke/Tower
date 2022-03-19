@@ -1,8 +1,18 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex p-0 flex-column align-items-center">
-        <h1>T O W E R</h1>
+        <h1 class="text-light d-flex align-items-center">
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#addEventModal"
+            title="add event"
+            class="btn btn-success rounded-circle fs-6 mx-3"
+          >
+            +
+          </button>
+          T O W E R
+        </h1>
       </div>
     </router-link>
     <button

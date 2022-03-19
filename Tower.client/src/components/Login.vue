@@ -30,16 +30,24 @@
         aria-labelledby="authDropdown"
       >
         <router-link :to="{ name: 'Account' }">
-          <div class="list-group-item list-group-item-action hoverable">
-            Manage Account
+          <div
+            class="list-group-item text-center list-group-item-action hoverable"
+          >
+            My Events
           </div>
         </router-link>
         <div
-          class="list-group-item list-group-item-action hoverable text-danger"
+          class="
+            list-group-item
+            text-center
+            list-group-item-action
+            hoverable
+            text-danger
+          "
           @click="logout"
         >
-          <i class="mdi mdi-logout"></i>
-          logout
+          <i class="mdi mdi-logout text-center"></i>
+          <a>logout</a>
         </div>
       </div>
     </div>

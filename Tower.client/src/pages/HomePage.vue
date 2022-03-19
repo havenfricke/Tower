@@ -3,6 +3,7 @@
     <div class="row mt-5">
       <div class="col-12 d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
+          <div class="p-5"></div>
           <h1
             class="col-12 p-3 img-fluid border border-info rounded"
             style="
@@ -30,12 +31,37 @@
           </div>
         </div>
         <div class="container">
-        <div class="row mx-4 my-3">
-          <div class="col-4 rounded bg-light hoverable p-1">
-            <EventCard />
+        <div class="row d-flex justify-content-center mx-4 my-3">
+
+          <div v-for="t in tEvents" :key="t.id" class="col-4 border border-white rounded bg-light hoverable p-1">
+            <EventCard :tEvent="t"/>
           </div>
-            
-            
+            <Modal id="addEventModal">
+          <template #title> Create an Event </template>
+          <template #body> 
+            <div class="row">
+              <div class="col-12">
+                <form>
+              Event Name
+              <input type="text" class="col-12 bg-secondary text-light rounded">
+              Start Date
+              <input type="date" class="col-12 bg-secondary text-light rounded">
+              Capacity
+              <input type="number" class="col-12 bg-secondary text-light rounded">
+              Description
+              <input type="text" class="col-12 bg-secondary text-light rounded">
+              Location
+              <input type="text" class="col-12 bg-secondary text-light rounded">
+              Event Cover Image Link
+              <input type="text" class="col-12 bg-secondary text-light rounded">
+              <div class="row p-3 mt-2">
+              <button class="col-12 btn btn-success">Create!</button>
+              </div>
+              </form>
+              </div>
+            </div>
+          </template>
+        </Modal>
           </div>
         </div>
       </div>
@@ -43,8 +69,17 @@
 </template>
 
 <script>
+import { computed, onMounted, watchEffect } from "@vue/runtime-core"
+import { eventsService } from "../services/EventsService"
+import { AppState } from "../AppState"
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    watchEffect(async () => eventsService.getAllEvents());
+    return {
+      tEvents: computed(() => AppState.tEvents),
+    }
+  }
 }
 </script>
 

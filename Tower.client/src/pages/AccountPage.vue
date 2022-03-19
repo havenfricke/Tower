@@ -1,8 +1,8 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+  <div class="row mx-4 my-3">
+    <div class="col-4 rounded bg-light hoverable p-1">
+      <EventCard />
+    </div>
   </div>
 </template>
 
@@ -22,5 +22,15 @@ export default {
 <style scoped>
 img {
   max-width: 100px;
+}
+.hoverable:hover {
+  transform: scale(1.09);
+  filter: drop-shadow(0px 15px 10px rgba(0, 0, 0, 0.3));
+  transition: 50ms ease-in-out;
+  cursor: pointer;
+}
+.hoverable:active {
+  transform: scale(0.98);
+  transition: 50ms ease-in-out;
 }
 </style>
