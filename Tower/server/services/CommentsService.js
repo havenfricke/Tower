@@ -6,9 +6,9 @@ class CommentsService {
     const comments = await dbContext.Comments.find({ eventId: id }).populate('creator').populate('event')
     return comments
   }
-  async removeComment(id, userId) {
+  async removeComment(id, body) {
     const comment = await dbContext.Comments.findById(id)
-    if (comment.creatorId.toString() !== userId) {
+    if (comment.creatorId.toString() !== body.userId) {
       throw new Forbidden('Not your comment')
     }
     await dbContext.Comments.findByIdAndDelete(id)
