@@ -8,6 +8,10 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/:id/tickets', this.getAccountTickets)
+  }
+  getAccountTickets(req, res, next) {
+    throw new Error("Method not implemented.")
   }
 
   async getUserAccount(req, res, next) {
