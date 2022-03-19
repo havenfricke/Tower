@@ -11,7 +11,6 @@ class DbContext {
   Profiles = mongoose.model('Profile', ProfileSchema, 'accounts');
   TowerEvents = mongoose.model('Event', EventsSchema)
   Tickets = mongoose.model('Ticket', TicketsSchema)
-
   Comments = mongoose.model('Comment', CommentsSchema)
 }
 

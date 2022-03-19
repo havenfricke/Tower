@@ -13,7 +13,6 @@ export class CommentsController extends BaseController {
   }
   async createComment(req, res, next) {
     try {
-      req.body.eventId = req.params.id
       req.body.creatorId = req.userInfo.id
       const comment = await commentsService.createComment(req.body)
       res.send(comment)
@@ -21,11 +20,12 @@ export class CommentsController extends BaseController {
       next(error)
     }
   }
-  deleteComment(req, res, next) {
+  async deleteComment(req, res, next) {
     try {
-
+      const doomed = await commentsService.removeComment(req.params.id, req.userInfo.id)
+      return res.send(doomed)
     } catch (error) {
-
+      next(error)
     }
   }
 }

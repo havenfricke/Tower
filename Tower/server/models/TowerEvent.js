@@ -10,7 +10,7 @@ export const EventsSchema = new Schema({
   startDate: { type: Date, required: true, min: Date.now() },
   isCanceled: { type: Boolean, required: true, default: false },
   type: { type: String, enum: ['CONCERT', 'CONVENTION', 'SPORT', 'DIGITAL'], uppercase: true, default: 'CONVENTION' },
-  creatorId: { type: Schema.Types.ObjectId, ref: 'Profile', required: true }
+  creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
 },
   { timestamps: true, toJSON: { virtuals: true } }
 )
@@ -19,6 +19,6 @@ EventsSchema.virtual('creator', {
   localField: 'creatorId',
   foreignField: '_id',
   justOne: true,
-  ref: 'Profile'
+  ref: 'Account'
 })
 
