@@ -17,6 +17,7 @@
       >
         <div v-if="account.picture">
           <img
+            title="Account Navigation"
             :src="account.picture"
             alt="account photo"
             height="40"
