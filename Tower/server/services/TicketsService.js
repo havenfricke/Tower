@@ -1,8 +1,15 @@
 import { dbContext } from "../db/DbContext"
-import { BadRequest } from "../utils/Errors"
+import { BadRequest, Forbidden } from "../utils/Errors"
 import { eventsService } from "./EventsService"
 
 class TicketsService {
+  async removeTicket(ticketId, accountId) {
+    const ticket = await dbContext.Tickets.findById(ticketId)
+    if (accountId !== ticket.creatorId) {
+      throw new Forbidden('Not your ticket to delete')
+    }
+    await dbContext.Tickets.findByIdAndDelete(ticketId)
+  }
 
   async getEventTickets(query) {
     const eventTickets = await dbContext.Tickets.find(query).populate('event')
@@ -22,6 +29,7 @@ class TicketsService {
       const attendeeTend = mongooseDocument.toJSON()
       return {
         ticketId: attendeeTend.id,
+        accountId: attendeeTend.accountId,
         ...attendeeTend.account
       }
     })
