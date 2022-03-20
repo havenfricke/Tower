@@ -44,7 +44,7 @@ class TicketsService {
     if (event.capacity > 0) {
       event.capacity -= 1
     }
-    const newTicket = await dbContext.Tickets.findOneAndUpdate({ eventId: ticket.eventId, accountId: ticket.accountId }, ticket, { upsert: true, new: true })
+    const newTicket = await dbContext.Tickets.create(ticket)
     await newTicket.populate('event')
     await newTicket.populate('account')
     await event.save()

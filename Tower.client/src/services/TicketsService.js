@@ -11,7 +11,7 @@ class TicketsService {
   }
 
   async createTicket() {
-    const res = await api.post('api/tickets')
+    const res = await api.post('/api/tickets')
     logger.log('creating a ticket', res.data)
     AppState.myTickets = [...AppState.myTickets, res.data]
   }

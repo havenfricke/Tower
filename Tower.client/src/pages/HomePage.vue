@@ -54,7 +54,7 @@ export default {
       try {
         await eventsService.getAllEvents()
       } catch (error) {
-        logger.log(error)
+        logger.error(error)
       }
     });
     return {
@@ -62,7 +62,7 @@ export default {
         try {
           await eventsService.getConcerts()
         } catch (error) {
-          logger.log(error)
+          logger.error(error)
         }
       },
       async filterConvention() {

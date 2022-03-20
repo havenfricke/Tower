@@ -122,6 +122,7 @@ export default {
         try {
           await eventsService.getEventById(route.params.id)
           await commentsService.getEventComments(route.params.id)
+          await ticketsService.getEventTickets(route.params.id)
         } catch (error) {
           logger.error(error)
         }
@@ -129,6 +130,7 @@ export default {
     }
     return {
       editable,
+      route,
       async createComment() {
         try {
           await commentsService.createComment(editable.value)
@@ -139,6 +141,7 @@ export default {
       },
       async createTicket() {
         try {
+          logger.log(route.params.id)
           await ticketsService.createTicket()
         } catch (error) {
           logger.error(error)
