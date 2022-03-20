@@ -72,8 +72,8 @@
         </div>
       </div>
     </div>
-    <div class="row d-flex mt-5 justify-content-center">
-      <div class="col-8 p-5 rounded bg-light">
+    <div class="row d-flex mt-3 justify-content-center">
+      <div class="col-8 p-5 mb-5 rounded bg-light">
         <div class="row">
           <form @submit.prevent="createComment">
             <input
@@ -84,10 +84,7 @@
             />
 
             <div class="d-flex justify-content-end mt-3">
-              <button
-                @click="createComment"
-                class="btn hoverable col-3 bg-success"
-              >
+              <button class="btn hoverable col-3 bg-success">
                 Add Comment
               </button>
             </div>
@@ -114,7 +111,9 @@ export default {
   name: 'Events',
   setup() {
     const route = useRoute();
-    const editable = ref({});
+    const editable = ref({
+      eventId: route.params.id
+    });
 
     if (route.params.id) {
       watchEffect(async () => {
@@ -122,7 +121,7 @@ export default {
           await eventsService.getEventById(route.params.id)
           await commentsService.getEventComments(route.params.id)
         } catch (error) {
-          logger.log(error)
+          logger.error(error)
         }
       });
     }
@@ -130,7 +129,8 @@ export default {
       editable,
       async createComment() {
         try {
-          await commentsService.createComment(route.params.id, editable.value)
+          await commentsService.createComment(editable.value)
+          reset()
         } catch (error) {
           logger.log(error)
         }
