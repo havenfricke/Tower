@@ -4,8 +4,6 @@
   </header>
   <main>
     <router-view />
-  </main>
-  <footer>
     <Modal id="addEventModal">
       <template #title> Create an Event </template>
       <template #body>
@@ -50,7 +48,8 @@
         </div>
       </template>
     </Modal>
-  </footer>
+  </main>
+  <footer></footer>
 </template>
 
 <script>

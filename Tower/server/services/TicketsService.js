@@ -3,7 +3,9 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 import { eventsService } from "./EventsService"
 
 class TicketsService {
-  async removeTicket(ticketId, accountId) {
+  async removeTicket(ticketId, accountId, body) {
+    const eventCap = await eventsService.getEventById(body.eventId)
+    eventCap.capacity += 1
     const ticket = await dbContext.Tickets.findById(ticketId)
     if (accountId !== ticket.creatorId) {
       throw new Forbidden('Not your ticket to delete')
@@ -43,6 +45,8 @@ class TicketsService {
       event.capacity -= 1
     }
     const newTicket = await dbContext.Tickets.findOneAndUpdate({ eventId: ticket.eventId, accountId: ticket.accountId }, ticket, { upsert: true, new: true })
+    await newTicket.populate('event')
+    await newTicket.populate('account')
     await event.save()
     return newTicket
   }

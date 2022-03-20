@@ -35,6 +35,7 @@
           <p class="p-3 mb-2">{{ tActive.description }}</p>
           <div class="row d-flex justify-content-end p-5">
             <div
+              @click="createTicket"
               class="
                 col-3
                 p-2
@@ -107,6 +108,7 @@ import { eventsService } from "../services/EventsService"
 import { useRoute } from "vue-router"
 import { commentsService } from "../services/CommentsService"
 import { logger } from "../utils/Logger"
+import { ticketsService } from "../services/TicketsService"
 export default {
   name: 'Events',
   setup() {
@@ -132,11 +134,20 @@ export default {
           await commentsService.createComment(editable.value)
           reset()
         } catch (error) {
-          logger.log(error)
+          logger.error(error)
+        }
+      },
+      async createTicket() {
+        try {
+          await ticketsService.createTicket()
+        } catch (error) {
+          logger.error(error)
         }
       },
       tActive: computed(() => AppState.activeEvent),
       comments: computed(() => AppState.comments),
+      myTickets: computed(() => AppState.myTickets),
+      eTickets: computed(() => AppState.eTickets)
     }
   }
 }
