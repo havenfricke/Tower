@@ -15,11 +15,11 @@
           >
             <p class="p-2 border-bottom border-light">Events for everyone 
               <ul>
-              <li class="fs-4 ms-5 mt-4">Plan your events</li>
-              <li class="fs-4 ms-5 mt-4">Find events that interest you</li>
-              <li class="fs-4 ms-5 mt-4">Become a part of the communities you love</li>
-              <li class="fs-4 ms-5 mt-4">Set the world on fire</li>
-              <li class="fs-4 ms-5 mt-4">Just kidding, but your parties will be lit</li>
+              <li class="fs-4 ms-5 mt-4 text-white">Plan your events</li>
+              <li class="fs-4 ms-5 mt-4 text-white">Find events that interest you</li>
+              <li class="fs-4 ms-5 mt-4 text-white">Become a part of the communities you love</li>
+              <li class="fs-4 ms-5 mt-4 text-white">Set the world on fire</li>
+              <li class="fs-4 ms-5 mt-4 text-white">Just kidding, but your parties will be lit</li>
               </ul>
               </p>
           </h1>
@@ -27,41 +27,15 @@
     </div>
         <div class="row d-flex justify-content-center p-5">
           <div class="col-12 fs-5 bg-secondary rounded p-1 mx-3">
-            <span class="row d-flex justify-content-around text-white p-3"><a class="col-3 text-center hoverable text-white">CONCERT</a><a class="col-3 text-center hoverable text-white">CONVENTION</a><a class="col-3 text-center hoverable text-white">SPORT</a><a class="col-3 text-center hoverable text-white">DIGITAL</a></span>
+            <span class="row d-flex justify-content-around text-info p-3"><a class="col-3 text-center hoverable text-info">CONCERT</a><a class="col-3 text-center hoverable text-info">CONVENTION</a><a class="col-3 text-center hoverable text-info">SPORT</a><a class="col-3 text-center hoverable text-info">DIGITAL</a></span>
           </div>
         </div>
         <div class="container">
         <div class="row d-flex justify-content-center mx-4 my-3">
 
-          <div v-for="t in tEvents" :key="t.id" class="col-4 border border-white rounded bg-light hoverable p-1">
+          <div v-for="t in tEvents" :key="t.id" class="col-4 border border-secondary border-lg rounded bg-light hoverable p-1">
             <EventCard :tEvent="t"/>
           </div>
-            <Modal id="addEventModal">
-          <template #title> Create an Event </template>
-          <template #body> 
-            <div class="row">
-              <div class="col-12">
-                <form>
-              Event Name
-              <input type="text" class="col-12 bg-secondary text-light rounded">
-              Start Date
-              <input type="date" class="col-12 bg-secondary text-light rounded">
-              Capacity
-              <input type="number" class="col-12 bg-secondary text-light rounded">
-              Description
-              <input type="text" class="col-12 bg-secondary text-light rounded">
-              Location
-              <input type="text" class="col-12 bg-secondary text-light rounded">
-              Event Cover Image Link
-              <input type="text" class="col-12 bg-secondary text-light rounded">
-              <div class="row p-3 mt-2">
-              <button class="col-12 btn btn-success">Create!</button>
-              </div>
-              </form>
-              </div>
-            </div>
-          </template>
-        </Modal>
           </div>
         </div>
       </div>
@@ -72,10 +46,17 @@
 import { computed, onMounted, watchEffect } from "@vue/runtime-core"
 import { eventsService } from "../services/EventsService"
 import { AppState } from "../AppState"
+import { logger } from "../utils/Logger"
 export default {
   name: 'Home',
   setup() {
-    watchEffect(async () => eventsService.getAllEvents());
+    watchEffect(async () => {
+      try {
+        await eventsService.getAllEvents()
+      } catch (error) {
+        logger.log(error)
+      }
+    });
     return {
       tEvents: computed(() => AppState.tEvents),
     }

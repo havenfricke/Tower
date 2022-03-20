@@ -9,8 +9,8 @@ class EventsService {
     AppState.tEvents = res.data
   }
 
-  async getEventById(query = {}) {
-    const res = await api.get('/api/events/' + { params: query })
+  async getEventById(id) {
+    const res = await api.get('/api/events/' + id)
     logger.log('get event by id', res.data)
     AppState.activeEvent = res.data
   }

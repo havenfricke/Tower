@@ -6,21 +6,6 @@
           title="Navigate to homepage"
           class="text-light d-flex align-items-center"
         >
-          <button
-            data-bs-toggle="modal"
-            data-bs-target="#addEventModal"
-            title="add event"
-            class="
-              btn btn-success
-              hoverable
-              rounded-circle
-              text-align
-              fs-6
-              mx-3
-            "
-          >
-            +
-          </button>
           T O W E R
         </h1>
       </div>

@@ -6,7 +6,71 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">Made by Haven Fricke</div>
+    <Modal id="addEventModal">
+      <template #title> Create an Event </template>
+      <template #body>
+        <div class="row">
+          <div class="col-12">
+            <form>
+              Event Name
+              <input
+                type="text"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              Start Date
+              <input
+                type="date"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              Capacity
+              <input
+                type="number"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              Description
+              <input
+                type="text"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              Location
+              <input
+                type="text"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              Event Cover Image Link
+              <input
+                type="text"
+                class="col-12 bg-secondary text-light rounded"
+              />
+              <div class="row p-3 mt-2">
+                <button class="col-12 btn btn-success">Create!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </template>
+    </Modal>
+    <div class="p-5 d-flex justify-content-end">
+      <div
+        data-bs-toggle="modal"
+        data-bs-target="#addEventModal"
+        title="add event"
+        class="
+          p-2
+          text-center
+          col-2
+          top
+          btn-success btn
+          rounded-top
+          text-align
+          fs-6
+          fixed-bottom
+          mt-0
+        "
+      >
+        Add Event
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -24,4 +88,16 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+.top {
+  z-index: 100;
+}
+.hoverable:hover {
+  filter: drop-shadow(0px 15px 10px rgba(0, 0, 0, 0.3));
+  transition: 50ms ease-in-out;
+  cursor: pointer;
+}
+.hoverable:active {
+  transform: scale(0.98);
+  transition: 50ms ease-in-out;
+}
 </style>
