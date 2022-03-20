@@ -27,7 +27,7 @@
     </div>
         <div class="row d-flex justify-content-center p-5">
           <div class="col-12 fs-5 bg-secondary rounded p-1 mx-3">
-            <span class="row d-flex justify-content-around text-info p-3"><a class="col-3 text-center hoverable text-info">CONCERT</a><a class="col-3 text-center hoverable text-info">CONVENTION</a><a class="col-3 text-center hoverable text-info">SPORT</a><a class="col-3 text-center hoverable text-info">DIGITAL</a></span>
+            <span class="row d-flex justify-content-around text-info p-3"><a @click="filterConcert" class="col-2 text-center hoverable text-info">CONCERT</a><a @click="filterConvention" class="col-2 text-center hoverable text-info">CONVENTION</a><a @click="filterSport" class="col-2 text-center hoverable text-info">SPORT</a><a @click="filterDigital" class="col-2 text-center hoverable text-info">DIGITAL</a> <a @click="filterFilter" class="col-2 text-center text-align hoverable text-warning">ALL EVENTS</a></span> 
           </div>
         </div>
         <div class="container">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { computed, onMounted, watchEffect } from "@vue/runtime-core"
+import { computed, onMounted, ref, watchEffect } from "@vue/runtime-core"
 import { eventsService } from "../services/EventsService"
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
@@ -58,6 +58,41 @@ export default {
       }
     });
     return {
+      async filterConcert() {
+        try {
+          await eventsService.getConcerts()
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      async filterConvention() {
+        try {
+          await eventsService.getConventions()
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      async filterSport() {
+        try {
+          await eventsService.getSports()
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      async filterDigital() {
+        try {
+          await eventsService.getDigital()
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      async filterFilter() {
+        try {
+          await eventsService.getAllEvents()
+        } catch (error) {
+          logger.log(error)
+        }
+      },
       tEvents: computed(() => AppState.tEvents),
     }
   }

@@ -42,6 +42,7 @@ export default {
   setup(props) {
     const router = useRouter();
     return {
+
       goTo(page) {
         router.push({
           name: page,

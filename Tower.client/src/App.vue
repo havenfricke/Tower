@@ -60,7 +60,7 @@
           text-center
           col-2
           top
-          btn-success btn
+          btn-warning btn
           rounded-top
           text-align
           fs-6

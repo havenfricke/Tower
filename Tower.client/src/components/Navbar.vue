@@ -4,7 +4,7 @@
       <div class="d-flex p-0 flex-column align-items-center">
         <h1
           title="Navigate to homepage"
-          class="text-light d-flex align-items-center"
+          class="text-warning d-flex align-items-center"
         >
           T O W E R
         </h1>
