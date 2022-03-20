@@ -2,11 +2,19 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex p-0 flex-column align-items-center">
-        <h1
-          title="Navigate to homepage"
-          class="text-warning d-flex align-items-center"
-        >
+        <h1 title="Navigate to homepage" class="text-warning d-flex text-align">
+          <span class="d-flex p-2 align-items-center justify-content-center">
+            <div
+              data-bs-toggle="modal"
+              data-bs-target="#addEventModal"
+              title="add event"
+              class="btn btn-warning text-dark rounded-circle"
+            >
+              +
+            </div>
+          </span>
           T O W E R
+          <p></p>
         </h1>
       </div>
     </router-link>

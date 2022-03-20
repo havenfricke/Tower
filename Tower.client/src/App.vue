@@ -50,27 +50,6 @@
         </div>
       </template>
     </Modal>
-    <div class="p-5 d-flex justify-content-end">
-      <div
-        data-bs-toggle="modal"
-        data-bs-target="#addEventModal"
-        title="add event"
-        class="
-          p-2
-          text-center
-          col-2
-          top
-          btn-warning btn
-          rounded-top
-          text-align
-          fs-6
-          fixed-bottom
-          mt-0
-        "
-      >
-        Add Event
-      </div>
-    </div>
   </footer>
 </template>
 

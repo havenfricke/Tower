@@ -19,7 +19,7 @@
       v-if="tEvent.isCanceled == true"
       class="col-12 bg-danger my-1 text-center text-dark rounded"
     >
-      Canceled
+      <a class="text-black">Canceled</a>
     </div>
     <div
       v-if="tEvent.capacity == 0"

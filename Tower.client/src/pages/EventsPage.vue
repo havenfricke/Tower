@@ -3,12 +3,24 @@
     <div class="p-5"></div>
     <div class="p-3"></div>
     <div class="row">
-      <div class="col-6 p-2">
+      <div class="col-6 align-items-top p-2">
         <img
-          class="img-fluid rounded ms-4 shadow"
+          class="img-fluid rounded ms-0 shadow"
           :src="tActive.coverImg"
           alt=""
         />
+        <div
+          v-if="tActive.isCanceled == true"
+          class="col-12 bg-danger my-1 text-center text-dark rounded"
+        >
+          <a class="text-black">Canceled</a>
+        </div>
+        <div
+          v-if="tActive.capacity == 0"
+          class="col-12 bg-warning my-1 text-center text-dark rounded"
+        >
+          Sold Out
+        </div>
       </div>
       <div class="border-start border-warning col-6">
         <ul>
@@ -20,13 +32,13 @@
             Starts at {{ new Date(tActive.startDate).toDateString() }}
           </li>
           <li class="p-3">{{ tActive.capacity }} remaining tickets</li>
-          <p class="p-4 mb-5">{{ tActive.description }}</p>
+          <p class="p-3 mb-2">{{ tActive.description }}</p>
           <div class="row d-flex justify-content-end p-5">
             <div
               class="
                 col-3
                 p-2
-                mt-5
+                mt-2
                 hoverable
                 text-center
                 bg-success
@@ -63,46 +75,27 @@
     <div class="row d-flex mt-5 justify-content-center">
       <div class="col-8 p-5 rounded bg-light">
         <div class="row">
-          <input
-            class="rounded col-12"
-            type="text"
-            placeholder="Add a comment about this event..."
-          />
+          <form @submit.prevent="createComment">
+            <input
+              v-model="editable.body"
+              class="rounded col-12"
+              type="text"
+              placeholder="Add a comment about this event..."
+            />
 
-          <div class="d-flex justify-content-end mt-3">
-            <button class="btn hoverable col-3 bg-success">Add Comment</button>
-          </div>
+            <div class="d-flex justify-content-end mt-3">
+              <button
+                @click="createComment"
+                class="btn hoverable col-3 bg-success"
+              >
+                Add Comment
+              </button>
+            </div>
+          </form>
         </div>
 
-        <div
-          class="
-            row
-            bg-white
-            d-flex
-            justify-content-start
-            align-items-center
-            shadow
-            mt-3
-            rounded
-            p-3
-          "
-        >
-          <img
-            style="max-height: 5vh; width: auto"
-            class="img-fluid col-2 rounded-circle"
-            src="https://thiscatdoesnotexist.com"
-            alt=""
-            :title="name"
-          />
-          <h5 class="col-10">Person's name</h5>
-          <div class="row">
-            <p class="col-12 mt-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-              iure libero quisquam neque ullam illo sint, voluptatem soluta,
-              illum voluptatibus molestias quidem, porro quasi temporibus
-              reprehenderit praesentium odit recusandae. Sint?
-            </p>
-          </div>
+        <div v-for="c in comments" :key="c.id">
+          <Comment :comment="c" />
         </div>
       </div>
     </div>
@@ -110,29 +103,40 @@
 </template>
 
 <script>
-import { computed } from "@vue/reactivity"
+import { computed, ref } from "@vue/reactivity"
 import { AppState } from "../AppState"
-import { onMounted, watchEffect } from "@vue/runtime-core"
+import { createCommentVNode, onMounted, watchEffect } from "@vue/runtime-core"
 import { eventsService } from "../services/EventsService"
 import { useRoute } from "vue-router"
+import { commentsService } from "../services/CommentsService"
+import { logger } from "../utils/Logger"
 export default {
   name: 'Events',
   setup() {
     const route = useRoute();
-
+    const editable = ref({});
 
     if (route.params.id) {
       watchEffect(async () => {
         try {
           await eventsService.getEventById(route.params.id)
+          await commentsService.getEventComments(route.params.id)
         } catch (error) {
           logger.log(error)
         }
       });
     }
     return {
+      editable,
+      async createComment() {
+        try {
+          await commentsService.createComment(route.params.id, editable.value)
+        } catch (error) {
+          logger.log(error)
+        }
+      },
       tActive: computed(() => AppState.activeEvent),
-
+      comments: computed(() => AppState.comments),
     }
   }
 }
