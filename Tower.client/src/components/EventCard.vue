@@ -1,8 +1,5 @@
 <template>
-  <button
-    @click="goTo('EventDetails')"
-    class="border border-light rounded bg-light"
-  >
+  <button @click="goTo('Events')" class="border border-light rounded bg-light">
     <img class="img-fluid rounded-top" :src="tEvent.coverImg" alt="" />
     <div class="col-12 mx-1 text-dark">
       <span class="row d-flex justify-content-center">
@@ -34,6 +31,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router"
 export default {
   props: {
     tEvent: {
@@ -41,9 +39,15 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    const router = useRouter();
     return {
-
+      goTo(page) {
+        router.push({
+          name: page,
+          params: { id: props.tEvent.id },
+        });
+      },
     }
   }
 }

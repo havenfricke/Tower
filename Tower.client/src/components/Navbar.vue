@@ -10,7 +10,14 @@
             data-bs-toggle="modal"
             data-bs-target="#addEventModal"
             title="add event"
-            class="btn btn-success hoverable rounded-circle fs-6 mx-3"
+            class="
+              btn btn-success
+              hoverable
+              rounded-circle
+              text-align
+              fs-6
+              mx-3
+            "
           >
             +
           </button>
