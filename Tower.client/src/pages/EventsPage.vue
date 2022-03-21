@@ -49,8 +49,66 @@
             >
               RSVP
             </div>
+            <div
+              v-if="account.id == tActive.creatorId"
+              data-bs-toggle="modal"
+              data-bs-target="#editEventModal"
+              class="
+                col-3
+                p-2
+                mt-2
+                ms-1
+                hoverable
+                text-center
+                bg-warning
+                text-white
+                rounded
+              "
+            >
+              Edit Event
+            </div>
           </div>
         </ul>
+        <Modal id="editEventModal">
+          <template #title> Edit Event </template>
+          <template #body>
+            <div class="row">
+              <div class="col-12">
+                <form @submit.prevent="editEvent">
+                  Event Name
+                  <input
+                    v-model="edited.name"
+                    type="text"
+                    class="col-12 bg-secondary text-light rounded"
+                  />
+
+                  Description
+                  <input
+                    v-model="edited.description"
+                    type="text"
+                    class="col-12 bg-secondary text-light rounded"
+                  />
+
+                  <div class="row p-3 mt-2">
+                    <button class="col-12 btn btn-success">Save Changes</button>
+                  </div>
+                </form>
+                <div class="row p-3 mt-2">
+                  <button
+                    v-if="
+                      account.id == tActive.creatorId ||
+                      tActive.isCanceled == true
+                    "
+                    @click="cancelEvent"
+                    class="col-12 btn btn-danger"
+                  >
+                    Cancel Event
+                  </button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </Modal>
       </div>
     </div>
     <div class="row p-3">
@@ -61,14 +119,8 @@
       </h4>
       <div class="col-12 bg-dark rounded p-2">
         <div class="row">
-          <div class="col-2">
-            <img
-              style="max-height: 5vh; width: auto"
-              class="hoverable img-fluid rounded-circle"
-              src="https://thiscatdoesnotexist.com"
-              alt=""
-              :title="name"
-            />
+          <div v-for="e in eTickets" :key="e.id" class="col-2">
+            <Attendees :eTicket="e" />
           </div>
         </div>
       </div>
@@ -116,6 +168,7 @@ export default {
     const editable = ref({
       eventId: route.params.id
     });
+    const edited = ref({});
 
     if (route.params.id) {
       watchEffect(async () => {
@@ -132,10 +185,10 @@ export default {
     return {
       editable,
       route,
+      edited,
       async createComment() {
         try {
           await commentsService.createComment(editable.value)
-          reset()
         } catch (error) {
           logger.error(error)
         }
@@ -146,6 +199,20 @@ export default {
           eventId: AppState.activeEvent.id,
         }
         ticketsService.createTicket(newTicket)
+      },
+      async editEvent() {
+        try {
+          await eventsService.editEvent(edited.value, route.params.id)
+        } catch (error) {
+          logger.error(error)
+        }
+      },
+      async cancelEvent() {
+        try {
+          await eventsService.cancelEvent(route.params.id)
+        } catch (error) {
+          logger.error(error)
+        }
       },
       tActive: computed(() => AppState.activeEvent),
       comments: computed(() => AppState.comments),

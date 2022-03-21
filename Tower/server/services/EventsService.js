@@ -40,7 +40,7 @@ class EventsService {
 
     original.isCanceled = !original.isCanceled
     await original.save()
-    return original.isCanceled ? 'Canceled' : 'Event reinstated'
+    return original
   }
 
 }

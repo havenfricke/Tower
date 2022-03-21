@@ -55,5 +55,17 @@ class EventsService {
     AppState.activeEvent = res.data
     return res.data
   }
+
+  async editEvent(body, id) {
+    const res = await api.put('/api/events/' + id, body)
+    logger.log('edited event', res.data)
+    AppState.activeEvent = res.data
+  }
+
+  async cancelEvent(id) {
+    const res = await api.delete('/api/events/' + id)
+    logger.log(res.data)
+    AppState.activeEvent = res.data
+  }
 }
 export const eventsService = new EventsService()

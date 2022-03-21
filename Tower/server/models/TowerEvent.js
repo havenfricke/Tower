@@ -6,7 +6,7 @@ export const EventsSchema = new Schema({
   description: { type: String, required: true },
   coverImg: { type: String, required: false, default: 'https://source.unsplash.com/700x700/?digital' },
   location: { type: String, required: true },
-  capacity: { type: Number, required: true, min: 1 },
+  capacity: { type: Number, required: false, min: 1 },
   startDate: { type: Date, required: true },
   isCanceled: { type: Boolean, required: false, default: false },
   type: { type: String, enum: ['CONCERT', 'CONVENTION', 'SPORT', 'DIGITAL'], uppercase: true, default: 'CONVENTION' },

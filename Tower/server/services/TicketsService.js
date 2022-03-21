@@ -14,12 +14,13 @@ class TicketsService {
   }
 
   async getEventTickets(query) {
-    const eventTickets = await dbContext.Tickets.find(query).populate('event')
+    const eventTickets = await dbContext.Tickets.find(query).populate('event').populate('account')
     return eventTickets.map(mongooseDocument => {
       const eventTickets = mongooseDocument.toJSON()
       return {
         ticketId: eventTickets.id,
         eventId: eventTickets.eventId,
+        account: eventTickets.account,
         ...eventTickets.event
       }
     })
