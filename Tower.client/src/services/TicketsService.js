@@ -13,7 +13,8 @@ class TicketsService {
   async createTicket(ticketData) {
     const res = await api.post('/api/tickets', ticketData)
     logger.log('creating a ticket', res.data)
-    AppState.myTickets = [...AppState.myTickets, res.data]
+    let newTick = res.data
+    AppState.eTickets.push(newTick)
   }
 
   async getMyTickets() {
@@ -25,8 +26,8 @@ class TicketsService {
   async deleteTicket(id) {
     const res = await api.delete('/api/tickets/' + id)
     logger.log('delete ticket', res.data)
-    AppState.myTickets = AppState.myTickets.filter(t => t.id !== id)
-    AppState.myTickets = res.data
+    AppState.myTickets = AppState.myTickets.filter(t => t.ticketId !== id)
+
   }
 }
 export const ticketsService = new TicketsService()

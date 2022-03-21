@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { watchEffect } from "@vue/runtime-core"
 
 export default {
   props: {
@@ -18,8 +19,8 @@ export default {
     }
   },
   setup() {
-
-    return {}
+    return {
+    }
   }
 }
 </script>

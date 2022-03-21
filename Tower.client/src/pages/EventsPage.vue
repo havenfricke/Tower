@@ -36,6 +36,7 @@
           <div class="row d-flex justify-content-end p-5">
             <div
               @click="createTicket(account.id)"
+              v-if="rsvpCheck == accountId"
               class="
                 col-3
                 p-2
@@ -50,7 +51,9 @@
               RSVP
             </div>
             <div
-              v-if="account.id == tActive.creatorId"
+              v-if="
+                account.id == tActive.creatorId || tActive.isCanceled == true
+              "
               data-bs-toggle="modal"
               data-bs-target="#editEventModal"
               class="
@@ -95,11 +98,9 @@
                 </form>
                 <div class="row p-3 mt-2">
                   <button
-                    v-if="
-                      account.id == tActive.creatorId ||
-                      tActive.isCanceled == true
-                    "
+                    v-if="account.id == tActive.creatorId"
                     @click="cancelEvent"
+                    data-bs-dismiss="modal"
                     class="col-12 btn btn-danger"
                   >
                     Cancel Event
@@ -161,6 +162,7 @@ import { useRoute } from "vue-router"
 import { commentsService } from "../services/CommentsService"
 import { logger } from "../utils/Logger"
 import { ticketsService } from "../services/TicketsService"
+import Pop from "../utils/Pop"
 export default {
   name: 'Events',
   setup() {
@@ -209,7 +211,9 @@ export default {
       },
       async cancelEvent() {
         try {
-          await eventsService.cancelEvent(route.params.id)
+          if (await Pop.confirm()) {
+            await eventsService.cancelEvent(route.params.id)
+          }
         } catch (error) {
           logger.error(error)
         }
@@ -218,7 +222,8 @@ export default {
       comments: computed(() => AppState.comments),
       myTickets: computed(() => AppState.myTickets),
       eTickets: computed(() => AppState.eTickets),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      rsvpCheck: computed(() => AppState.eTickets.find(t => t.account.id == AppState.account.id))
     }
   }
 }

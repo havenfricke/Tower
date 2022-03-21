@@ -31,7 +31,9 @@
 </template>
 
 <script>
+import { watchEffect } from "@vue/runtime-core";
 import { useRouter } from "vue-router"
+import { eventsService } from "../services/EventsService";
 export default {
   props: {
     tEvent: {

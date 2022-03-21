@@ -24,7 +24,6 @@ export default {
     watchEffect(async () => {
       try {
         await ticketsService.getMyTickets()
-        AppState.myTickets
       } catch (error) {
         logger.error(error)
       }

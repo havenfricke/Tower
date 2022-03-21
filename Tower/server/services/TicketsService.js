@@ -4,8 +4,8 @@ import { eventsService } from "./EventsService"
 
 class TicketsService {
   async removeTicket(ticketId, accountId, body) {
-    // const eventCap = await eventsService.getEventById(body.eventId)
-    // eventCap.capacity += 1
+    // const eventCap = await eventsService.getEventById(body.event.id)
+    // eventCap.capacity++
     const ticket = await dbContext.Tickets.findById(ticketId)
     if (ticket.accountId.toString() !== accountId) {
       throw new Forbidden('Not your ticket to delete')
@@ -44,8 +44,11 @@ class TicketsService {
       throw new BadRequest('Tickets are sold out')
     }
     if (event.capacity > 0) {
-      event.capacity -= 1
+      event.capacity = event.capacity ? event.capacity-- : ''
     }
+
+
+
     const newTicket = await dbContext.Tickets.create(ticket)
     await newTicket.populate('event')
     await newTicket.populate('account')
