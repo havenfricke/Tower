@@ -3,7 +3,7 @@
     <div class="p-5"></div>
     <div class="p-3"></div>
     <div class="row">
-      <div class="col-6 align-items-top p-2">
+      <div class="col-6 d-flex justify-content-center align-items-top p-2">
         <img
           class="img-fluid rounded ms-0 shadow"
           :src="tActive.coverImg"
@@ -118,9 +118,9 @@
       >
         Event Attendees
       </h4>
-      <div class="col-12 bg-dark rounded p-2">
+      <div class="col-12 bg-dark rounded p-1">
         <div class="row">
-          <div v-for="e in eTickets" :key="e.id" class="col-2">
+          <div v-for="e in eTickets" :key="e.id" class="col-1">
             <Attendees :eTicket="e" />
           </div>
         </div>

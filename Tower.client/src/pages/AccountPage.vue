@@ -6,7 +6,7 @@
     <div
       v-for="m in myTickets"
       :key="m.id"
-      class="col-2 rounded bg-light border border-dark p-1"
+      class="col-4 rounded bg-light border border-dark p-1"
     >
       <TicketCard :myTicket="m" />
     </div>

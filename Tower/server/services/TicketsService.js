@@ -40,11 +40,8 @@ class TicketsService {
   }
   async createTicket(ticket) {
     const event = await eventsService.getEventById(ticket.eventId)
-    if (event.capacity == 0) {
+    if (event.capacity == 0 || event.isCanceled == true) {
       throw new BadRequest('Tickets are sold out')
-    }
-    if (event.capacity > 0) {
-      event.capacity = event.capacity ? event.capacity-- : ''
     }
 
 
@@ -52,7 +49,10 @@ class TicketsService {
     const newTicket = await dbContext.Tickets.create(ticket)
     await newTicket.populate('event')
     await newTicket.populate('account')
-    await newTicket.save()
+
+    event.capacity--
+
+    await event.save()
     return newTicket
   }
 
