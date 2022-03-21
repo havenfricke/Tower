@@ -5,7 +5,7 @@
         <div class="row d-flex justify-content-center">
           <div class="p-5"></div>
           <h1
-            class="col-12 p-3 img-fluid border border-info rounded"
+            class="col-12 p-3 img-fluid textrise border border-info rounded"
             style="
               width: 90vw;
               height: 60vh;
@@ -13,13 +13,13 @@
               background-size: contain;
             "
           >
-            <p class="p-2 border-bottom border-light">Events for everyone 
+            <p class="p-2 border-bottom textrise border-light">Events for everyone 
               <ul>
-              <li class="fs-4 ms-5 mt-4 text-white">Plan your events</li>
-              <li class="fs-4 ms-5 mt-4 text-white">Find events that interest you</li>
-              <li class="fs-4 ms-5 mt-4 text-white">Become a part of the communities you love</li>
-              <li class="fs-4 ms-5 mt-4 text-white">Set the world on fire</li>
-              <li class="fs-4 ms-5 mt-4 text-white">Just kidding, but your parties will be lit</li>
+              <li class="fs-4 ms-5 textrise mt-4 text-white">Plan your events</li>
+              <li class="fs-4 ms-5 textrise mt-4 text-white">Find events that interest you</li>
+              <li class="fs-4 ms-5 textrise mt-4 text-white">Become a part of the communities you love</li>
+              <li class="fs-4 ms-5 textrise mt-4 text-white">Set the world on fire</li>
+              <li class="fs-4 ms-5 textrise mt-4 text-white">Just kidding, but your parties will be lit</li>
               </ul>
               </p>
           </h1>
@@ -127,5 +127,9 @@ export default {
 .hoverable:active {
   transform: scale(0.98);
   transition: 50ms ease-in-out;
+}
+
+.textrise {
+  filter: drop-shadow(2px 5px 2px rgba(0, 0, 0, 0.3));
 }
 </style>
