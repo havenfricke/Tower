@@ -123,6 +123,7 @@ export default {
           await eventsService.getEventById(route.params.id)
           await commentsService.getEventComments(route.params.id)
           await ticketsService.getEventTickets(route.params.id)
+          await ticketsService.getMyTickets()
         } catch (error) {
           logger.error(error)
         }

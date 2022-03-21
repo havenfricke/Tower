@@ -1,9 +1,12 @@
 <template>
-  <div class="row mx-4 my-3">
+  <div class="row mt-5 mx-4 my-3">
+    <div class="p-5"></div>
+    <div class="col-12 text-center fs-1">My Tickets</div>
+
     <div
       v-for="m in myTickets"
       :key="m.id"
-      class="col-2 rounded bg-light hoverable p-1"
+      class="col-2 rounded bg-light border border-dark p-1"
     >
       <TicketCard :myTicket="m" />
     </div>
@@ -21,13 +24,14 @@ export default {
     watchEffect(async () => {
       try {
         await ticketsService.getMyTickets()
+        AppState.myTickets
       } catch (error) {
         logger.error(error)
       }
     });
     return {
       account: computed(() => AppState.account),
-      myTickets: computed(() => AppState.myEvents)
+      myTickets: computed(() => AppState.myTickets)
     }
   }
 }
