@@ -35,7 +35,7 @@
           <p class="p-3 mb-2">{{ tActive.description }}</p>
           <div class="row d-flex justify-content-end p-5">
             <div
-              @click="createTicket"
+              @click="createTicket(account.id)"
               class="
                 col-3
                 p-2
@@ -139,10 +139,10 @@ export default {
           logger.error(error)
         }
       },
-      async createTicket() {
+      async createTicket(accountId) {
         try {
           logger.log(route.params.id)
-          await ticketsService.createTicket()
+          await ticketsService.createTicket(route.params.id, accountId)
         } catch (error) {
           logger.error(error)
         }
@@ -150,7 +150,8 @@ export default {
       tActive: computed(() => AppState.activeEvent),
       comments: computed(() => AppState.comments),
       myTickets: computed(() => AppState.myTickets),
-      eTickets: computed(() => AppState.eTickets)
+      eTickets: computed(() => AppState.eTickets),
+      account: computed(() => AppState.account)
     }
   }
 }

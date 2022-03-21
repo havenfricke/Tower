@@ -21,7 +21,7 @@ export class EventsController extends BaseController {
     try {
       req.body.eventId = req.params.id
       const comments = await commentsService.getEventComments(req.params.id)
-      res.send(comments)
+      return res.send(comments)
     } catch (error) {
       next(error)
     }
@@ -46,7 +46,7 @@ export class EventsController extends BaseController {
   async getEvents(req, res, next) {
     try {
       const towerEvents = await eventsService.getEvents(req.query)
-      res.send(towerEvents)
+      return res.send(towerEvents)
     } catch (error) {
       next(error)
     }

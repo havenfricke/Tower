@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const TicketsSchema = new Schema({
   eventId: { type: Schema.Types.ObjectId, required: true, ref: 'Event' },
-  accountId: { type: Schema.Types.ObjectId, required: false, ref: 'Account' }
+  accountId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 },
   { timestamps: true, toJSON: { virtuals: true } }
 )

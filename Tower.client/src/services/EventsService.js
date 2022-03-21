@@ -46,5 +46,14 @@ class EventsService {
     AppState.tEvents = res.data.filter(e => e.type == filter)
     logger.log(AppState.tEvents)
   }
+
+  async createEvent(body) {
+    logger.log(body, 'body made it to service')
+    const res = await api.post('/api/events', body)
+    logger.log('create event', res.data)
+    AppState.tEvents = [...AppState.tEvents, res.data]
+    AppState.activeEvent = res.data
+    return res.data
+  }
 }
 export const eventsService = new EventsService()
