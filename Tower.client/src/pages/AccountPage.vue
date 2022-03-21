@@ -1,19 +1,33 @@
 <template>
   <div class="row mx-4 my-3">
-    <div class="col-4 rounded bg-light hoverable p-1">
-      <EventCard />
+    <div
+      v-for="m in myTickets"
+      :key="m.id"
+      class="col-2 rounded bg-light hoverable p-1"
+    >
+      <TicketCard :myTicket="m" />
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { AppState } from '../AppState'
+import { ticketsService } from "../services/TicketsService"
+import { logger } from "../utils/Logger"
 export default {
   name: 'Account',
   setup() {
+    watchEffect(async () => {
+      try {
+        await ticketsService.getMyTickets()
+      } catch (error) {
+        logger.error(error)
+      }
+    });
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      myTickets: computed(() => AppState.myEvents)
     }
   }
 }

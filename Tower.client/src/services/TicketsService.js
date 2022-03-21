@@ -11,11 +11,15 @@ class TicketsService {
   }
 
   async createTicket(ticketData) {
-    logger.log(ticketData)
     const res = await api.post('/api/tickets', ticketData)
     logger.log('creating a ticket', res.data)
     AppState.myTickets = [...AppState.myTickets, res.data]
   }
 
+  async getMyTickets() {
+    const res = await api.get('/account/tickets')
+    logger.log('get my tickets', res.data)
+    AppState.myTickets = res.data
+  }
 }
 export const ticketsService = new TicketsService()
