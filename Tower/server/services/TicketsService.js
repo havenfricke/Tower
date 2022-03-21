@@ -36,7 +36,7 @@ class TicketsService {
       }
     })
   }
-  async createOrUpdate(ticket) {
+  async createTicket(ticket) {
     const event = await eventsService.getEventById(ticket.eventId)
     if (event.capacity == 0) {
       throw new BadRequest('Tickets are sold out')
@@ -47,7 +47,7 @@ class TicketsService {
     const newTicket = await dbContext.Tickets.create(ticket)
     await newTicket.populate('event')
     await newTicket.populate('account')
-    await event.save()
+    await newTicket.save()
     return newTicket
   }
 

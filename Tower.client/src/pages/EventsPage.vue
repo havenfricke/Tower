@@ -139,13 +139,12 @@ export default {
           logger.error(error)
         }
       },
-      async createTicket(accountId) {
-        try {
-          logger.log(route.params.id)
-          await ticketsService.createTicket(route.params.id, accountId)
-        } catch (error) {
-          logger.error(error)
+      async createTicket() {
+        let newTicket = {
+          accountId: AppState.account.id,
+          eventId: AppState.activeEvent.id,
         }
+        ticketsService.createTicket(newTicket)
       },
       tActive: computed(() => AppState.activeEvent),
       comments: computed(() => AppState.comments),
