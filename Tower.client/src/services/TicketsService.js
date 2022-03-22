@@ -11,10 +11,12 @@ class TicketsService {
   }
 
   async createTicket(ticketData) {
+    AppState.activeEvent.capacity--
     const res = await api.post('/api/tickets', ticketData)
     logger.log('creating a ticket', res.data)
     let newTick = res.data
     AppState.eTickets.push(newTick)
+
   }
 
   async getMyTickets() {

@@ -3,21 +3,25 @@
     <div class="p-5"></div>
     <div class="p-3"></div>
     <div class="row">
-      <div class="col-6 d-flex justify-content-center align-items-top p-2">
-        <img
-          class="img-fluid rounded ms-0 shadow"
-          :src="tActive.coverImg"
-          alt=""
-        />
-        <div
-          v-if="tActive.isCanceled == true"
-          class="col-12 bg-danger my-1 text-center text-dark rounded"
-        >
-          <a class="text-black">Canceled</a>
+      <div class="col-6 align-items-top p-2">
+        <div class="d-flex justify-content-center">
+          <img
+            class="img-fluid rounded ms-0 shadow"
+            :src="tActive.coverImg"
+            alt=""
+          />
+        </div>
+        <div class="d-flex justify-content-center">
+          <div
+            v-if="tActive.isCanceled == true"
+            class="col-12 bg-danger p-2 mt-4 text-center text-dark rounded"
+          >
+            <a class="text-black">Canceled</a>
+          </div>
         </div>
         <div
           v-if="tActive.capacity == 0"
-          class="col-12 bg-warning my-1 text-center text-dark rounded"
+          class="col-12 bg-warning p-2 mt-4 text-center text-dark rounded"
         >
           Sold Out
         </div>
@@ -36,7 +40,7 @@
           <div class="row d-flex justify-content-end p-5">
             <div
               @click="createTicket(account.id)"
-              v-if="rsvpCheck == accountId"
+              v-if="rsvpCheck == accountId && tActive.capacity !== 0"
               class="
                 col-3
                 p-2
