@@ -1,5 +1,5 @@
 <template>
-  <button class="border border-light rounded bg-light">
+  <button class="border border-light glassy rounded bg-light">
     <div class="row d-flex justify-content-end">
       <i
         @click="deleteTicket"

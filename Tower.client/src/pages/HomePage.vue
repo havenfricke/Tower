@@ -26,14 +26,14 @@
         </div>
     </div>
         <div class="row d-flex justify-content-center p-5">
-          <div class="col-12 fs-5 bg-secondary rounded p-1 mx-3">
+          <div class="col-12 fs-5 ms-5 bg-secondary rounded p-1 mx-3">
             <span class="row d-flex justify-content-around text-info p-3"><a @click="filterConcert" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONCERT</a><a @click="filterConvention" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONVENTION</a><a @click="filterSport" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">SPORT</a><a @click="filterDigital" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">DIGITAL</a> <a @click="filterFilter" class="col-lg-2 col-md-2 col-sm-12 text-center text-align hoverable text-warning">ALL</a></span> 
           </div>
         </div>
         <div class="container">
         <div class="row d-flex justify-content-center mx-4 my-3">
 
-          <div v-for="t in tEvents" :key="t.id" class="glassy col-lg-4 col-md-6 col-sm-12 border border-secondary border-lg rounded bg-light hoverable p-1">
+          <div v-for="t in tEvents" :key="t.id" class=" col-lg-4 col-md-6 col-sm-12 rounded hoverable p-1">
             <EventCard :tEvent="t"/>
           </div>
           </div>
@@ -131,10 +131,5 @@ export default {
 
 .textrise {
   filter: drop-shadow(2px 5px 2px rgba(0, 0, 0, 0.3));
-}
-.glassy {
-  background-color: rgba(255, 255, 255, 0.034);
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.15);
 }
 </style>
