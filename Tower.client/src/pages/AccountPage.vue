@@ -18,7 +18,7 @@
     <div
       v-for="m in myTickets"
       :key="m.id"
-      class="col-lg-4 col-md-4 col-sm-12 rounded p-1"
+      class="col-lg-3 col-md-3 col-sm-12 rounded p-1"
     >
       <TicketCard :myTicket="m" />
     </div>

@@ -10,24 +10,27 @@
     <img
       @click="goTo('Events')"
       class="img-fluid selectable hoverable rounded-top"
+      title="navigate to event"
       :src="myTicket.event.coverImg"
       alt=""
     />
 
     <div class="col-12 mx-1 text-dark">
       <span class="row d-flex justify-content-center">
-        <h4 class="col-12 p-2 text-center">
+        <h4 class="col-12 p-2 text-center text-black">
           {{ myTicket.event.name }}
         </h4>
       </span>
     </div>
-    <div class="text-start">
+    <div class="text-start text-black">
       <ul>
-        <li>{{ myTicket.event.location }}</li>
-        <li>
+        <li class="text-black">{{ myTicket.event.location }}</li>
+        <li class="text-black">
           Starts at {{ new Date(myTicket.event.startDate).toDateString() }}
         </li>
-        <li>{{ myTicket.event.capacity }} remaining tickets</li>
+        <li class="text-black">
+          {{ myTicket.event.capacity }} remaining tickets
+        </li>
       </ul>
     </div>
     <div

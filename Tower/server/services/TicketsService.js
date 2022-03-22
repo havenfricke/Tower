@@ -4,13 +4,14 @@ import { eventsService } from "./EventsService"
 
 class TicketsService {
   async removeTicket(ticketId, accountId, body) {
-    // const eventCap = await eventsService.getEventById(body.event.id)
-    // eventCap.capacity++
     const ticket = await dbContext.Tickets.findById(ticketId)
     if (ticket.accountId.toString() !== accountId) {
       throw new Forbidden('Not your ticket to delete')
     }
     await dbContext.Tickets.findByIdAndDelete(ticketId)
+    const event = await eventsService.getEventById(body.event.id)
+    event.capacity++
+    await event.save()
   }
 
   async getEventTickets(query) {
