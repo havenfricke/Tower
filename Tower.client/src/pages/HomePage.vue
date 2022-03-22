@@ -3,7 +3,7 @@
     <div class="row mt-5">
       <div class="col-12 d-flex justify-content-center">
         <div class="row d-flex justify-content-center">
-          <div class="p-5"></div>
+          <div class="p-5 mt-5"></div>
           <h1
             class="col-12 p-3 img-fluid textrise border border-info rounded"
             style="
@@ -15,11 +15,11 @@
           >
             <p class="p-2 border-bottom textrise border-light">Events for everyone 
               <ul>
-              <li class="fs-4 ms-5 textrise mt-4 text-white">Plan your events</li>
-              <li class="fs-4 ms-5 textrise mt-4 text-white">Find events that interest you</li>
-              <li class="fs-4 ms-5 textrise mt-4 text-white">Become a part of the communities you love</li>
-              <li class="fs-4 ms-5 textrise mt-4 text-white">Set the world on fire</li>
-              <li class="fs-4 ms-5 textrise mt-4 text-white">Just kidding, but your parties will be lit</li>
+              <li class="fs-4 ms-4 textrise mt-4 text-white">Plan your events</li>
+              <li class="fs-4 ms-4 textrise mt-4 text-white">Find events that interest you</li>
+              <li class="fs-4 ms-4 textrise mt-4 text-white">Become a part of the communities you love</li>
+              <li class="fs-4 ms-4 textrise mt-4 text-white">Set the world on fire</li>
+              <li class="fs-4 ms-4 textrise mt-4 text-white">Just kidding, but your parties will be lit</li>
               </ul>
               </p>
           </h1>
@@ -27,13 +27,13 @@
     </div>
         <div class="row d-flex justify-content-center p-5">
           <div class="col-12 fs-5 bg-secondary rounded p-1 mx-3">
-            <span class="row d-flex justify-content-around text-info p-3"><a @click="filterConcert" class="col-2 text-center hoverable text-info">CONCERT</a><a @click="filterConvention" class="col-2 text-center hoverable text-info">CONVENTION</a><a @click="filterSport" class="col-2 text-center hoverable text-info">SPORT</a><a @click="filterDigital" class="col-2 text-center hoverable text-info">DIGITAL</a> <a @click="filterFilter" class="col-2 text-center text-align hoverable text-warning">ALL EVENTS</a></span> 
+            <span class="row d-flex justify-content-around text-info p-3"><a @click="filterConcert" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONCERT</a><a @click="filterConvention" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONVENTION</a><a @click="filterSport" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">SPORT</a><a @click="filterDigital" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">DIGITAL</a> <a @click="filterFilter" class="col-lg-2 col-md-2 col-sm-12 text-center text-align hoverable text-warning">ALL</a></span> 
           </div>
         </div>
         <div class="container">
         <div class="row d-flex justify-content-center mx-4 my-3">
 
-          <div v-for="t in tEvents" :key="t.id" class="col-4 border border-secondary border-lg rounded bg-light hoverable p-1">
+          <div v-for="t in tEvents" :key="t.id" class="glassy col-lg-4 col-md-6 col-sm-12 border border-secondary border-lg rounded bg-light hoverable p-1">
             <EventCard :tEvent="t"/>
           </div>
           </div>
@@ -131,5 +131,10 @@ export default {
 
 .textrise {
   filter: drop-shadow(2px 5px 2px rgba(0, 0, 0, 0.3));
+}
+.glassy {
+  background-color: rgba(255, 255, 255, 0.034);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 </style>

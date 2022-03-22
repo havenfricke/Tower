@@ -5,12 +5,13 @@
         <h1 title="Navigate to homepage" class="text-warning d-flex text-align">
           <span class="d-flex p-2 align-items-center justify-content-center">
             <div
+              v-if="account.id !== undefined"
               data-bs-toggle="modal"
               data-bs-target="#addEventModal"
               title="add event"
               class="btn btn-warning text-dark rounded-circle"
             >
-              +
+              <i class="mdi mdi-power"></i>
             </div>
           </span>
           T O W E R
@@ -40,9 +41,13 @@
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
+import { AppState } from "../AppState";
 export default {
   setup() {
-    return {};
+    return {
+      account: computed(() => AppState.account)
+    };
   },
 };
 </script>

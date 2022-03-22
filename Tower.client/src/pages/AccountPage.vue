@@ -1,12 +1,30 @@
 <template>
   <div class="row mt-5 mx-4 my-3">
     <div class="p-5"></div>
-    <div class="col-12 text-center fs-1">My Tickets</div>
+    <div class="mt-5"></div>
+    <div
+      class="
+        col-12
+        text-center
+        fs-1
+        text-warning
+        border-bottom border-warning
+        mb-3
+      "
+    >
+      My Tickets
+    </div>
 
     <div
       v-for="m in myTickets"
       :key="m.id"
-      class="col-4 rounded bg-light border border-dark p-1"
+      class="
+        col-lg-8 col-md-8 col-sm-12
+        rounded
+        bg-light
+        border border-dark
+        p-1
+      "
     >
       <TicketCard :myTicket="m" />
     </div>

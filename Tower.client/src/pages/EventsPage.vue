@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid bg-secondary">
     <div class="p-5"></div>
-    <div class="p-3"></div>
+    <div class="p-3 mt-5"></div>
     <div class="row">
-      <div class="col-6 align-items-top p-2">
+      <div class="col-lg-6 col-md-6 col-sm-12 align-items-top p-2">
         <div class="d-flex justify-content-center">
           <img
             class="img-fluid rounded ms-0 shadow"
@@ -26,7 +26,7 @@
           Sold Out
         </div>
       </div>
-      <div class="border-start border-warning col-6">
+      <div class="border-start border-warning col-lg-6 col-md-6 col-sm-12">
         <ul>
           <h1 class="border-bottom border-warning text-warning">
             {{ tActive.name }}
@@ -40,9 +40,13 @@
           <div class="row d-flex justify-content-end p-5">
             <div
               @click="createTicket(account.id)"
-              v-if="rsvpCheck == accountId && tActive.capacity !== 0"
+              v-if="
+                rsvpCheck == accountId &&
+                tActive.capacity !== 0 &&
+                tActive.isCanceled !== true
+              "
               class="
-                col-3
+                col-lg-3 col-md-3 col-sm-12
                 p-2
                 mt-2
                 hoverable
@@ -56,12 +60,12 @@
             </div>
             <div
               v-if="
-                account.id == tActive.creatorId || tActive.isCanceled == true
+                account.id == tActive.creatorId && tActive.isCanceled !== true
               "
               data-bs-toggle="modal"
               data-bs-target="#editEventModal"
               class="
-                col-3
+                col-lg-3 col-md-3 col-sm-12
                 p-2
                 mt-2
                 ms-1
@@ -124,17 +128,17 @@
       </h4>
       <div class="col-12 bg-dark rounded p-1">
         <div class="row">
-          <div v-for="e in eTickets" :key="e.id" class="col-1">
+          <div v-for="e in eTickets" :key="e.id" class="">
             <Attendees :eTicket="e" />
           </div>
         </div>
       </div>
     </div>
     <div class="row d-flex mt-3 justify-content-center">
-      <div class="col-8 p-5 mb-5 rounded bg-light">
+      <div class="col-lg-8 col-md-8 col-sm-12 p-4 mb-5 rounded bg-light">
         <div class="row">
           <form @submit.prevent="createComment">
-            <input
+            <textarea
               v-model="editable.body"
               class="rounded col-12"
               type="text"
@@ -142,7 +146,9 @@
             />
 
             <div class="d-flex justify-content-end mt-3">
-              <button class="btn hoverable col-3 bg-success">
+              <button
+                class="btn hoverable col-lg-3 col-md-3 col-sm-12 bg-success"
+              >
                 Add Comment
               </button>
             </div>

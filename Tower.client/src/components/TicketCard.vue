@@ -4,7 +4,7 @@
       <i
         @click="deleteTicket"
         title="delete ticket"
-        class="col-2 mdi mdi-delete hoverable"
+        class="col-2 fs-3 mb-1 mdi mdi-delete hoverable"
       ></i>
     </div>
     <img

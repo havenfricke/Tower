@@ -74,7 +74,7 @@ export class EventsController extends BaseController {
       const userId = req.userInfo.id
       const eventId = req.params.id
       const cancelEvent = await eventsService.cancelEvent(eventId, userId)
-      return res.send(cancelEvent, 'Canceled')
+      return res.send(cancelEvent)
     } catch (error) {
       next(error)
     }
