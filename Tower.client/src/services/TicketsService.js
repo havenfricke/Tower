@@ -26,6 +26,7 @@ class TicketsService {
   }
 
   async deleteTicket(id) {
+    AppState.activeEvent.capacity++
     const res = await api.delete('/api/tickets/' + id)
     logger.log('delete ticket', res.data)
     AppState.myTickets = AppState.myTickets.filter(t => t.ticketId !== id)
