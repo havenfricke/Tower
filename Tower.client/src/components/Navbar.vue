@@ -9,7 +9,7 @@
               data-bs-toggle="modal"
               data-bs-target="#addEventModal"
               title="add event"
-              class="btn btn-warning text-dark rounded-circle"
+              class="btn btn-warning me-2 text-dark rounded-circle"
             >
               <i class="mdi mdi-power"></i>
             </div>

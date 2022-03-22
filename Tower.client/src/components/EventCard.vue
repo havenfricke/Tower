@@ -3,12 +3,12 @@
     <img class="img-fluid rounded-top" :src="tEvent.coverImg" alt="" />
     <div class="col-12 mx-1 text-dark">
       <span class="row d-flex justify-content-center">
-        <h4 class="col-12 p-2 text-center">
+        <h4 class="col-12 p-2 text-center text-black">
           {{ tEvent.name }}
         </h4>
       </span>
     </div>
-    <div class="text-start">
+    <div class="text-start text-black">
       <ul>
         <li>{{ tEvent.location }}</li>
         <li>Starts at {{ new Date(tEvent.startDate).toDateString() }}</li>

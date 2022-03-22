@@ -13,7 +13,7 @@
               background-size: contain;
             "
           >
-            <p class="p-2 border-bottom textrise border-light">Events for everyone 
+            <p class="p-2 border-bottom textrise border-white">Events for everyone 
               <ul>
               <li class="fs-4 ms-4 textrise mt-4 text-white">Plan your events</li>
               <li class="fs-4 ms-4 textrise mt-4 text-white">Find events that interest you</li>
@@ -27,7 +27,7 @@
     </div>
         <div class="row d-flex justify-content-center p-5">
           <div class="col-12 fs-5 ms-5 bg-secondary rounded p-1 mx-3">
-            <span class="row d-flex justify-content-around text-info p-3"><a @click="filterConcert" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONCERT</a><a @click="filterConvention" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">CONVENTION</a><a @click="filterSport" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">SPORT</a><a @click="filterDigital" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-info">DIGITAL</a> <a @click="filterFilter" class="col-lg-2 col-md-2 col-sm-12 text-center text-align hoverable text-warning">ALL</a></span> 
+            <span class="row d-flex justify-content-around text-cyan p-3"><a @click="filterConcert" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-cyan">CONCERT</a><a @click="filterConvention" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-cyan">CONVENTION</a><a @click="filterSport" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-cyan">SPORT</a><a @click="filterDigital" class="col-lg-2 col-md-2 col-sm-12 text-center hoverable text-cyan">DIGITAL</a> <a @click="filterFilter" class="col-lg-2 col-md-2 col-sm-12 text-center text-align hoverable text-warning">ALL</a></span> 
           </div>
         </div>
         <div class="container">
