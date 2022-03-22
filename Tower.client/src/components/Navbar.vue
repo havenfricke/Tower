@@ -8,10 +8,10 @@
               v-if="account.id !== undefined"
               data-bs-toggle="modal"
               data-bs-target="#addEventModal"
-              title="add event"
+              title="start an event"
               class="btn btn-warning me-2 text-dark rounded-circle"
             >
-              <i class="mdi mdi-power"></i>
+              <i class="mdi mdi-power fs-4"></i>
             </div>
           </span>
           T O W E R

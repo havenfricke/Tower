@@ -12,42 +12,57 @@
             <form @submit.prevent="createEvent">
               Event Name
               <input
+                required
                 v-model="editable.name"
                 type="text"
                 class="col-12 bg-secondary text-light rounded"
+                minlength="3"
+                maxlength="50"
               />
               Start Date
               <input
+                required
                 v-model="editable.startDate"
                 type="datetime-local"
                 class="col-12 bg-secondary text-light rounded"
               />
               Capacity
               <input
+                required
                 v-model="editable.capacity"
                 type="number"
                 class="col-12 bg-secondary text-light rounded"
+                min="20"
+                max="1000"
               />
               Description
               <input
+                required
                 v-model="editable.description"
                 type="text"
                 class="col-12 bg-secondary text-light rounded"
+                minlength="10"
+                maxlength="50"
               />
               Location
               <input
+                required
                 v-model="editable.location"
                 type="text"
                 class="col-12 bg-secondary text-light rounded"
+                minlength="10"
+                maxlength="50"
               />
               Event Cover Image Link
               <input
+                required
                 v-model="editable.coverImg"
                 type="text"
                 class="col-12 bg-secondary text-light rounded"
               />
               Event type
               <select
+                required
                 v-model="editable.type"
                 type="text"
                 class="col-12 bg-secondary text-light rounded"

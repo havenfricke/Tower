@@ -128,7 +128,7 @@
       </h4>
       <div class="col-12 bg-dark rounded p-1">
         <div class="row">
-          <div v-for="e in eTickets" :key="e.id" class="">
+          <div v-for="e in eTickets" :key="e.id" class="col-2">
             <Attendees :eTicket="e" />
           </div>
         </div>

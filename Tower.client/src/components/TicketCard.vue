@@ -1,5 +1,5 @@
 <template>
-  <button class="border border-light glassy rounded bg-light">
+  <button class="border ddd border-light glassy rounded bg-light">
     <div class="row d-flex justify-content-end">
       <i
         @click="deleteTicket"
@@ -87,4 +87,7 @@ export default {
 </script>
 
 <style>
+.ddd {
+  cursor: default;
+}
 </style>
