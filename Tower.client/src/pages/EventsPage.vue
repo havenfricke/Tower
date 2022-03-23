@@ -139,6 +139,7 @@
         <div class="row">
           <form @submit.prevent="createComment">
             <textarea
+              required
               v-model="editable.body"
               class="rounded col-12"
               type="text"
@@ -203,6 +204,7 @@ export default {
           await commentsService.createComment(editable.value)
         } catch (error) {
           logger.error(error)
+
         }
       },
       async createTicket() {

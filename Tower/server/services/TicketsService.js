@@ -3,14 +3,15 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 import { eventsService } from "./EventsService"
 
 class TicketsService {
-  async removeTicket(ticketId, accountId, body) {
+  async removeTicket(ticketId, accountId) {
     const ticket = await dbContext.Tickets.findById(ticketId)
     if (ticket.accountId.toString() !== accountId) {
       throw new Forbidden('Not your ticket to delete')
     }
-    await dbContext.Tickets.findByIdAndDelete(ticketId)
-    const event = await eventsService.getEventById(body.event.id)
+    const event = await eventsService.getEventById(ticket.eventId)
     event.capacity++
+    await dbContext.Tickets.findByIdAndDelete(ticketId)
+    // NOTE move this up a line before delete, use the eventId from the ticket that you find
     await event.save()
   }
 
