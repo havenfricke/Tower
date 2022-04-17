@@ -230,6 +230,7 @@ export default {
           logger.error(error)
         }
       },
+
       tActive: computed(() => AppState.activeEvent),
       comments: computed(() => AppState.comments),
       myTickets: computed(() => AppState.myTickets),
